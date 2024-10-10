@@ -99,7 +99,7 @@ function displayMessage(message) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
 
-        if (message.sender === "Meta AI") {
+        if (message.sender === "Vishwaguru") {
             messageElement.classList.add('ai-message');
         }
 

@@ -24,14 +24,14 @@ public class ChatController {
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         String sessionId = headerAccessor.getSessionId();
 
-        if (chatMessage.getContent().startsWith("@meta")) {
-            String prompt = chatMessage.getContent().replaceFirst("@meta", "").trim();
+        if (chatMessage.getContent().startsWith("@Vishwaguru")) {
+            String prompt = chatMessage.getContent().replaceFirst("@Vishwaguru", "").trim();
             messagingTemplate.convertAndSend("/topic/public", chatMessage);
             String ollamaResponse = ollamaService.sendPromptToOllama(prompt);
             ChatMessage ollamaMessage = new ChatMessage();
             ollamaMessage.setType(MessageType.CHAT);
             ollamaMessage.setContent(ollamaResponse);
-            ollamaMessage.setSender("Meta AI");
+            ollamaMessage.setSender("Vishwaguru");
             messagingTemplate.convertAndSend("/topic/public", ollamaMessage);
             return null;
         }
