@@ -99,17 +99,14 @@ function displayMessage(message) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
 
-        // Check if the message is from Meta AI
         if (message.sender === "Meta AI") {
             messageElement.classList.add('ai-message');
         }
 
-        // Add a class if the message was sent by the current user
         if (message.sender === username) {
             messageElement.classList.add('sent-by-user');
         }
 
-        // Add a class for private messages
         if (message.isPrivate) {
             messageElement.classList.add('private-message');
         }

@@ -25,25 +25,14 @@ public class ChatController {
         String sessionId = headerAccessor.getSessionId();
 
         if (chatMessage.getContent().startsWith("@meta")) {
-            // Remove the @meta tag and send the remaining content as a prompt to Ollama
             String prompt = chatMessage.getContent().replaceFirst("@meta", "").trim();
-
-            // Send the original message to all users
             messagingTemplate.convertAndSend("/topic/public", chatMessage);
-
-            // Process the Ollama response
             String ollamaResponse = ollamaService.sendPromptToOllama(prompt);
-
-            // Create a new message for the Ollama response
             ChatMessage ollamaMessage = new ChatMessage();
             ollamaMessage.setType(MessageType.CHAT);
             ollamaMessage.setContent(ollamaResponse);
             ollamaMessage.setSender("Meta AI");
-
-            // Send the Ollama response to all users
             messagingTemplate.convertAndSend("/topic/public", ollamaMessage);
-
-            // Return null to prevent duplicate message
             return null;
         }
 
@@ -56,6 +45,5 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
-
 
 }
