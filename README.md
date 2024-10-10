@@ -92,10 +92,6 @@ Contributions to improve the chat application are welcome. Please follow these s
 5. Push to the branch (`git push origin feature/AmazingFeature`)
 6. Open a Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
 ## Acknowledgments
 
 - Spring Boot for the robust backend framework
